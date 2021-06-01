@@ -16,7 +16,7 @@ export const userData = createSlice({
         },
         removePost: (posts, action) => {
             return posts.filter(post => post._id !== action.payload);
-        },
+        }
     }
 })
 
@@ -68,7 +68,7 @@ export const likePost = (id) => async (dispatch) => {
 
 export const updatePost = (id, post) => async (dispatch, getState) => {
     try {
-
+            
         const { data } = await api.updatePost(id, post);
         dispatch(update(data));
 

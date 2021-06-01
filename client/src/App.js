@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Container, AppBar, Typography, Grow, Grid } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 
-//import { getPosts } from './actions/posts';
 import { getPosts } from './reducers/postReducer';
 import memories from './images/memories.png';
 import Posts from './components/Posts/Posts';
@@ -14,9 +13,15 @@ const App = () => {
     const classes = useStyles();
     const dispatch = useDispatch();
     
+    //removing currentID as a useEffect dep. ensures updates to posts render correctly
+    //originally currentID was a dep. to inform <Form /> when a user wanted to edit a
+    //post, but currentID propogates automatically from <Post /> to <App /> where
+    //<Form /> can use it immediately. Once setCurrentId is called in <Post />, the
+    //currentId travels up the mutual parent <App /> and <Form /> uses it without 
+    //needing to 'listen' for the change to currentId.
     useEffect(() => {
         dispatch(getPosts());
-    }, [currentId, dispatch]);
+    },[dispatch]);
 
     return (
         <Container maxWidth='lg'>
