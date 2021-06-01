@@ -6,7 +6,8 @@ import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import moment from 'moment';
 import useStyles from './styles';
 import { useDispatch } from 'react-redux';
-import { deletePost, likePost } from '../../../actions/posts';
+
+import { deletePost, likePost } from '../../../reducers/postReducer';
 
 const Post = ({ post, setCurrentId }) => {
     const classes = useStyles();
@@ -25,7 +26,7 @@ const Post = ({ post, setCurrentId }) => {
                 </Button>
             </div>
             <div className={classes.details}>
-                <Typography variant='body2' color='textSecondary' component='h2'>{post.tags.map(tag => `#${tag} `)}</Typography>
+                <Typography variant='body2' color='textSecondary' component='h2'>{post.tags ? post.tags.map(tag => `#${tag} `) : []}</Typography>
             </div>
             <Typography className={classes.title} variant='h5' gutterBottom component='h2'>{post.title}</Typography>
             <CardContent>
