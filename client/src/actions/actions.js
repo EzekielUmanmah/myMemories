@@ -1,23 +1,11 @@
 import * as api from '../api';
-
-import { update, fetchPosts, newPost, removePost } from '../reducers/postReducer';
-
-export const getPosts = () => async (dispatch) => {
-    try {
-
-        const { data } = await api.fetchPosts();
-        dispatch(fetchPosts(data));
-        
-    } catch (error) {
-        console.log(error);
-    }
-}
+import { update, addPost, removePost } from '../reducers/postReducer';
 
 export const createPost = (post) => async (dispatch) => {
     try {
 
         const { data } = await api.createPost(post);
-        dispatch(newPost(data));
+        dispatch(addPost(data));
         
     } catch (error) {
         console.log(error);
@@ -39,18 +27,18 @@ export const likePost = (id) => async (dispatch) => {
     try {
 
         const { data } = await api.likePost(id);
-        dispatch(update(data));
+        dispatch(update({id, changes: {...data}}));
 
     } catch (error) {
         console.log(error);
     }
 }
 
-export const updatePost = (id, post) => async (dispatch, getState) => {
+export const updatePost = (id, post) => async (dispatch) => {
     try {
             
         const { data } = await api.updatePost(id, post);
-        dispatch(update(data));
+        dispatch(update({id, changes: {...data}}));
 
     } catch (error) {
         console.log(error);

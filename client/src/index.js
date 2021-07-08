@@ -6,6 +6,9 @@ import App from './App';
 import './index.css';
 import store from './store';
 
+//import { getPosts } from './reducers/postReducer';
+//store.dispatch(getPosts())
+
 ReactDOM.render(
     <Provider store={store}>
       <App />  

@@ -4,21 +4,37 @@ import { useSelector } from 'react-redux';
 
 import Post from './Post/Post';
 import useStyles from './styles';
+import { selectIds } from '../../reducers/postReducer';
 
 const Posts = ({ setCurrentId }) => {
-    const posts = useSelector(state => state.user); 
+    
+    const postIds = useSelector(selectIds);
+    const fetchStatus = useSelector(state => state.posts.status); 
+    const error = useSelector(state => state.posts.error);
     const classes = useStyles();
-     
-    return (
-        !posts.length ? <CircularProgress /> : (
+
+    let content;
+
+    if(fetchStatus === 'fetching'){
+        content = <CircularProgress />
+    } 
+    else if(fetchStatus === 'succeeded'){
+        content = (
             <Grid className={classes.container} container alignItems='stretch' spacing={3}>
-                {posts.map(post => 
-                    <Grid key={post._id} item xs={12} sm={6}>
-                        <Post post={post} setCurrentId={setCurrentId} />
+                {postIds.map(postId => 
+                    <Grid key={postId} item xs={12} sm={6}>
+                        <Post postId={postId} setCurrentId={setCurrentId} />
                     </Grid>
                 )}
             </Grid>
-        )   
+        )
+    }
+    else if(fetchStatus === 'failed'){
+        content = <div>{error}</div>
+    }
+    
+    return (
+       <>{content}</>     
     );
 }
 

@@ -6,6 +6,12 @@ export default makeStyles({
     paddingTop: '56.25%',
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
     backgroundBlendMode: 'darken',
+    backgroundPosition: '0% 15%'
+    //objectFit: 'contain',
+    //height: 'auto',
+    //maxHeight: '150px',
+    //width: 'auto',
+    //maxWidth: '250px',
   },
   border: {
     border: 'solid',
@@ -19,6 +25,7 @@ export default makeStyles({
     justifyContent: 'space-between',
     borderRadius: '15px',
     height: '100%',
+    //maxHeight: '300px',
     position: 'relative',
   },
   overlay: {
@@ -48,5 +55,6 @@ export default makeStyles({
     padding: '0 16px 8px 16px',
     display: 'flex',
     justifyContent: 'space-between',
+    height: 'inherit',
   },
 });

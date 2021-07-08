@@ -4,11 +4,14 @@ import { TextField, Button, Typography, Paper } from '@material-ui/core';
 import FileBase from 'react-file-base64';
 
 import useStyles from './styles';
-import { createPost, updatePost } from '../../actions/actions';
+import { updatePost, createPost } from '../../actions/actions';
+import { selectPostById } from '../../reducers/postReducer';
 
 const Form = ({ currentId, setCurrentId }) => {
+    const post = useSelector(state => selectPostById(state, currentId));
+    
     const [postData, setPostData] = useState({creator: '', title: '', message: '', tags: '', selectedFile: ''});
-    const post = useSelector( state => currentId ? state.user.find(p => p._id === currentId) : null);
+    
     const classes = useStyles();
     const dispatch = useDispatch();
     
