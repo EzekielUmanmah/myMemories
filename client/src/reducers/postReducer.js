@@ -14,7 +14,7 @@ export const getPosts = createAsyncThunk('posts/fetchPosts', async () => {
 
 const postsAdapter = createEntityAdapter({ 
     selectId: post => post._id,
-    //sortComparer: (a, b) => b.createdAt.localeCompare(a.createdAt)
+    sortComparer: (a, b) => b.createdAt.localeCompare(a.createdAt)
 });
 
 export const postsSlice = createSlice({
@@ -22,7 +22,6 @@ export const postsSlice = createSlice({
     initialState: postsAdapter.getInitialState({ status: 'idle', error: null }),
     reducers: {
         update: (id, data) => postsAdapter.updateOne(id, data),
-        //removePost: (id, post) => postsAdapter.removeOne(id, post),
         removePost: postsAdapter.removeOne,
         addPost: postsAdapter.addOne
     },

@@ -9,11 +9,14 @@ export default makeStyles((theme) => ({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: '10px 50px',
+    padding: '10px 50px', fontSize: '.5em'
   },
   heading: {
     color: 'rgba(0,183,255, 1)',
     textDecoration: 'none',
+    [theme.breakpoints.down('xs')]: {
+      display: 'none'
+    }
   },
   image: {
     marginLeft: '15px',

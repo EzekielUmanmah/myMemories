@@ -7,11 +7,6 @@ export default makeStyles({
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
     backgroundBlendMode: 'darken',
     backgroundPosition: '0% 15%'
-    //objectFit: 'contain',
-    //height: 'auto',
-    //maxHeight: '150px',
-    //width: 'auto',
-    //maxWidth: '250px',
   },
   border: {
     border: 'solid',
@@ -25,7 +20,6 @@ export default makeStyles({
     justifyContent: 'space-between',
     borderRadius: '15px',
     height: '100%',
-    //maxHeight: '300px',
     position: 'relative',
   },
   overlay: {
